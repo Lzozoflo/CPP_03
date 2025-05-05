@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:17:38 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/30 16:27:47 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:48:13 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap :  public virtual ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	public:
 	// {

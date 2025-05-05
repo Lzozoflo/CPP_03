@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:22 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/30 08:02:46 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:43:09 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,44 @@
 
 class ClapTrap
 {
-	private:
-	// {
-		std::string		_Name;				//bob
-	// }
 	protected:
 	// {
 
-		unsigned int	_HitPoint;
-		unsigned int	_EnergyPoint;
-		unsigned int	_AttackDamage;
+		std::string		_Name;				//bob
+		unsigned int	_HitPoint;			//10
+		unsigned int	_EnergyPoint;		//10
+		unsigned int	_AttackDamage;		//0
 
 	// }
 	public:
 	// {
 
-		ClapTrap( void );								//Canonical
-		ClapTrap( const ClapTrap &other );				//Canonical
-		ClapTrap &operator=( const ClapTrap &other );	//Canonical
-		~ClapTrap( void );								//Canonical
+		/*---------------constructor------Canonical-------destructor----------------*/
 
-		ClapTrap( const std::string &name );
+		ClapTrap( void );
+		ClapTrap( const ClapTrap &other );
+		ClapTrap &operator=( const ClapTrap &other );
+		~ClapTrap( void );
 
-		const std::string &getName() const ;
-		void setName( const std::string &name );
-		void attack(const std::string &target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
 
+		/*---------------constructor-------------destructor----------------*/
+
+		ClapTrap( const std::string name );
+
+
+		/*----utils----*/
+
+		void	writeRedName( std::string str1, std::string str2 );
+		void	writeAttack( std::string str1, const std::string& target );
+		static void	writeConstructorCall( std::string str1 );
+		static void	writeDestructorCall( std::string str1 );
+
+
+		/*----func----*/
+
+		void	attack(const std::string &target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 	// }
 };
 

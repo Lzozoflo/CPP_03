@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:19:53 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/30 15:44:13 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:44:04 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,39 @@
 
 FragTrap::FragTrap( void ) : ClapTrap()
 {
-	_HitPoint = 100;
-	_EnergyPoint = 100;
-	_AttackDamage = 30;
-	std::cout << BLUE << "Constructor FragTrap is Called" << RESET << std::endl;
+	writeConstructorCall("FragTrap Default");
+	this->_HitPoint = 100;
+	this->_EnergyPoint = 100;
+	this->_AttackDamage = 30;
 }
 
 
 FragTrap::FragTrap( const FragTrap &other )
 {
-	setName(other.getName());
-	_HitPoint = other._HitPoint;
-	_EnergyPoint = other._EnergyPoint;
-	_AttackDamage = other._AttackDamage;
-	std::cout << BLUE << "Constructor FragTrap Copy is Called" << RESET << std::endl;
+	writeConstructorCall("FragTrap Copy");
+	this->_Name = other._Name;
+	this->_HitPoint = other._HitPoint;
+	this->_EnergyPoint = other._EnergyPoint;
+	this->_AttackDamage = other._AttackDamage;
 }
 
 
 FragTrap &FragTrap::operator=( const FragTrap &other )
 {
+	std::cout << BLUE << "operator FragTrap '=' is Called" << RESET << std::endl;
 	if (this != &other){
-		setName(other.getName());
-		_HitPoint = other._HitPoint;
-		_EnergyPoint = other._EnergyPoint;
-		_AttackDamage = other._AttackDamage;
+		this->_Name = other._Name;
+		this->_HitPoint = other._HitPoint;
+		this->_EnergyPoint = other._EnergyPoint;
+		this->_AttackDamage = other._AttackDamage;
 	}
-	std::cout << BLUE << "Constructor FragTrap '=' is Called" << RESET << std::endl;
 	return (*this);
 }
 
 
 FragTrap::~FragTrap( void )
 {
-	std::cout << YELLOW << getName() << " Destructor FragTrap '=' is Called" << RESET << std::endl;
+	writeDestructorCall("FragTrap ");
 }
 
 
@@ -61,11 +61,10 @@ FragTrap::~FragTrap( void )
 
 FragTrap::FragTrap( const std::string name ) : ClapTrap(name)
 {
-	_HitPoint = 100;
-	_EnergyPoint = 100;
-	_AttackDamage = 30;
-	std::cout << BLUE << "Constructor ScavTrap name is Called" << RESET << std::endl;
-
+	writeConstructorCall("FragTrap name");
+	this->_HitPoint = 100;
+	this->_EnergyPoint = 100;
+	this->_AttackDamage = 30;
 }
 
 
@@ -79,10 +78,10 @@ void FragTrap::attack(const std::string &target)
 	switch (this->_EnergyPoint)
 	{
 	case 0:
-		std::cout << RED << this->getName() << " does not have enough energy points to attack" << RESET << std::endl;
+		this->writeRedName("FragTrap ", " does not have enough energy points to attack");
 		break;
 	default:
-		std::cout << "FragTrap " << this->getName() << " attacks " << target << ", causing "<<  this->_AttackDamage <<" points of damage!" << std::endl;
+		writeAttack("FragTrap ", target);
 		this->_EnergyPoint--;
 		break;
 	}
@@ -91,7 +90,7 @@ void FragTrap::attack(const std::string &target)
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << this->getName() << " highfive some ramdom ClapTrap" << std::endl;
+	std::cout << this->_Name << " highfive some ramdom ClapTrap" << std::endl;
 }
 
 

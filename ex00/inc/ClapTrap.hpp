@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:22 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/30 07:40:16 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:28:12 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,31 @@ class ClapTrap
 	public:
 	// {
 
-		ClapTrap( void );								//Canonical
-		ClapTrap( const ClapTrap &other );				//Canonical
-		ClapTrap &operator=( const ClapTrap &other );	//Canonical
-		~ClapTrap( void );								//Canonical
+		/*---------------constructor------Canonical-------destructor----------------*/
 
-		ClapTrap( const std::string &name );
+		ClapTrap( void );
+		ClapTrap( const ClapTrap &other );
+		ClapTrap &operator=( const ClapTrap &other );
+		~ClapTrap( void );
 
-		void attack(const std::string &target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
 
+		/*---------------constructor-------------destructor----------------*/
+
+		ClapTrap( const std::string name );
+
+
+		/*----utils----*/
+
+		void	writeRedName( std::string str1, std::string str2 );
+		static void	writeConstructorCall( std::string str1 );
+		static void	writeDestructorCall( std::string str1 );
+
+
+		/*----func----*/
+
+		void	attack(const std::string &target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 	// }
 };
 

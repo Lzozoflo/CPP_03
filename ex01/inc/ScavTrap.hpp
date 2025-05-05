@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:19:19 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/30 12:04:44 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:17:44 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 class ScavTrap : public ClapTrap
 {
-	private:
+	protected:
 	// {
-
+		bool _GateKeeper;
 	// }
 	public:
 	// {
@@ -32,8 +32,6 @@ class ScavTrap : public ClapTrap
 		ScavTrap( std::string name );
 		void attack(const std::string &target);
 		void guardGate( void );
-
-
 	// }
 };
 

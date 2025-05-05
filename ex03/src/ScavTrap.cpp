@@ -6,50 +6,49 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:23:31 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/01 08:54:20 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:51:02 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
+
 /*---------------constructor------Canonical-------destructor----------------*/
 
 
-ScavTrap::ScavTrap( void ) : ClapTrap()
+ScavTrap::ScavTrap( void ) : ClapTrap(), _GateKeeper(false)
 {
-	_HitPoint = 100;
-	_EnergyPoint = 50;
-	_AttackDamage = 20;
-	std::cout << BLUE << "Constructor ScavTrap is Called" << RESET << std::endl;
+
+	this->_HitPoint = 100;
+	this->_EnergyPoint = 50;
+	this->_AttackDamage = 20;
+	writeConstructorCall("ScavTrap Default");
 }
 
 
-ScavTrap::ScavTrap( const ScavTrap &other )
+ScavTrap::ScavTrap( const ScavTrap &other ) : ClapTrap(other), _GateKeeper(other._GateKeeper)
 {
-	setName(other.getName());
-	_HitPoint = other._HitPoint;
-	_EnergyPoint = other._EnergyPoint;
-	_AttackDamage = other._AttackDamage;
-	std::cout << BLUE << "Constructor ScavTrap Copy is Called" << RESET << std::endl;
+	writeConstructorCall("ClapTrap Copy");
 }
 
 
 ScavTrap &ScavTrap::operator=( const ScavTrap &other )
 {
+	std::cout << BLUE << "operator ScavTrap '=' is Called" << RESET << std::endl;
 	if (this != &other){
-		setName(other.getName());
-		_HitPoint = other._HitPoint;
-		_EnergyPoint = other._EnergyPoint;
-		_AttackDamage = other._AttackDamage;
+		this->_GateKeeper = other._GateKeeper;
+		this->_Name = other._Name;
+		this->_HitPoint = other._HitPoint;
+		this->_EnergyPoint = other._EnergyPoint;
+		this->_AttackDamage = other._AttackDamage;
 	}
-	std::cout << BLUE << "Constructor ScavTrap '=' is Called" << RESET << std::endl;
 	return (*this);
 }
 
 
 ScavTrap::~ScavTrap( void )
 {
-	std::cout << YELLOW << getName() << " Destructor ScavTrap is Called" << RESET << std::endl;
+	writeDestructorCall("ScavTrap");
 }
 
 
@@ -61,10 +60,11 @@ ScavTrap::~ScavTrap( void )
 
 ScavTrap::ScavTrap( std::string name ) : ClapTrap(name)
 {
-	_HitPoint = 100;
-	_EnergyPoint = 50;
-	_AttackDamage = 20;
-	std::cout << BLUE << "Constructor ScavTrap name is Called" << RESET << std::endl;
+	writeConstructorCall("ScavTrap name");
+	this->_GateKeeper = false;
+	this->_HitPoint = 100;
+	this->_EnergyPoint = 50;
+	this->_AttackDamage = 20;
 }
 
 
@@ -76,29 +76,42 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap(name)
 
 void ScavTrap::attack(const std::string& target)
 {
+	if (this->_HitPoint== 0){
+		this->writeRedName("ScavTrap ", " is KO (no hit point) so he can't attack...");
+		return ;
+	}
 	switch (this->_EnergyPoint)
 	{
-	case 0:
-		std::cout << RED << this->getName() << " does not have enough energy points to attack" << RESET << std::endl;
-		break;
-	default:
-		std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing "<<  this->_AttackDamage <<" points of damage!" << std::endl;
-		this->_EnergyPoint--;
-		break;
+		case 0:
+			this->writeRedName("ScavTrap ", " does not have enough energy points to attack");
+			break;
+		default:
+			this->_EnergyPoint--;
+			writeAttack("ScavTrap ", target);
+			break;
 	}
 }
 
 
 void	ScavTrap::guardGate( void )
 {
+	if (this->_HitPoint == 0){
+		this->writeRedName("ScavTrap ", " is KO (no hit point) so he can't be in Gate Keeper mode...");
+		return ;
+	}
+	if (this->_GateKeeper == true){
+		std::cout << "ScavTrap " << this->_Name << " is already in Gate keeper mode. (current energy: " << this->_EnergyPoint << ")" << std::endl;
+		return ;
+	}
 	switch (this->_EnergyPoint)
 	{
 		case 0:
-			std::cout << RED << this->getName() << " does not have enough energy points to attack" << RESET << std::endl;
+			this->writeRedName("ScavTrap ", " does not have enough energy points to protect Gate");
 			break;
 		default:
-			std::cout << "ScavTrap "<< this->getName() << " is now in Gate keeper mode." << std::endl;
 			this->_EnergyPoint--;
+			this->_GateKeeper = true;
+			std::cout << "ScavTrap "<< this->_Name << " is now in Gate keeper mode. (current energy: " << this->_EnergyPoint << ")" << std::endl;
 			break;
 	}
 }

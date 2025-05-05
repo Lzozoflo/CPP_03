@@ -6,26 +6,28 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:13 by fcretin           #+#    #+#             */
-/*   Updated: 2025/04/30 15:50:55 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:54:16 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ClapTrap.hpp"
+
 
 /*---------------constructor------Canonical-------destructor----------------*/
 
 
-ClapTrap::ClapTrap( void ) : _Name("Bob"), _HitPoint(10), _EnergyPoint(10), _AttackDamage(0)
+ClapTrap::ClapTrap( void ) :
+_Name("Bob"), _HitPoint(10), _EnergyPoint(10), _AttackDamage(0)
 {
-
-	std::cout << BLUE << "Constructor ClapTrap Default is Called" << RESET << std::endl;
+	writeConstructorCall("ClapTrap Default");
 }
 
 
 ClapTrap::ClapTrap( const ClapTrap &other ) :
 _Name(other._Name), _HitPoint(other._HitPoint), _EnergyPoint(other._EnergyPoint), _AttackDamage(other._AttackDamage)
 {
-	std::cout << BLUE << "Constructor ClapTrap Copy is Called" << RESET << std::endl;
+	writeConstructorCall("ClapTrap Copy");
 }
 
 
@@ -44,7 +46,7 @@ ClapTrap &ClapTrap::operator=( const ClapTrap &other )
 
 ClapTrap::~ClapTrap( void )
 {
-	std::cout << YELLOW << this->_Name << " Destructor ClapTrap is Called" << RESET << std::endl;
+	writeDestructorCall("ClapTrap");
 }
 
 
@@ -57,25 +59,46 @@ ClapTrap::~ClapTrap( void )
 
 ClapTrap::ClapTrap( const std::string name ) :
 _Name(name), _HitPoint(10), _EnergyPoint(10), _AttackDamage(0)
-{std::cout << BLUE << "Constructor ClapTrap Name is Called" << RESET << std::endl;}
-
+{
+	writeConstructorCall("ClapTrap Name");
+}
 
 /*---------------constructor-------------destructor----------------*/
+
+
+/*----utils----*/
+
+
+void ClapTrap::writeRedName( std::string str1, std::string str2 )
+{
+	std::cout << RED << str1 << this->_Name << str2 << RESET << std::endl;
+}
+
+void	ClapTrap::writeAttack( std::string str1, const std::string& target )
+{
+	std::cout	<< str1 << this->_Name << " attacks " << target << ", causing " << this->_AttackDamage
+				<< " points of damage! (current energy: " << this->_EnergyPoint << ")" << std::endl;
+}
+
+void	ClapTrap::writeConstructorCall( std::string str1 )
+{
+	std::cout << BLUE << "Constructor " << str1 << " is Called" << RESET << std::endl;
+	// (void)str1;
+}
+
+void	ClapTrap::writeDestructorCall( std::string str1 )
+{
+	std::cout << YELLOW << "Destructor " << str1 << " is Called" << RESET << std::endl;
+	// (void)str1;
+}
+
+
+/*----utils----*/
 
 
 /*----func----*/
 
 
-const std::string &ClapTrap::getName() const
-{
-	return (this->_Name);
-}
-
-
-void ClapTrap::setName( const std::string &name)
-{
-	this->_Name = name;
-}
 
 
 void ClapTrap::attack(const std::string& target)
@@ -83,11 +106,11 @@ void ClapTrap::attack(const std::string& target)
 	switch (this->_EnergyPoint)
 	{
 		case 0:
-			std::cout << RED << this->_Name << " does not have enough energy points to attack" << RESET << std::endl;
+			this->writeRedName("ClapTrap ", " does not have enough energy points to attack");
 			break;
 		default:
-			std::cout << "ClapTrap " << _Name << " attacks " << target << ", causing "<<  _AttackDamage <<" points of damage!" << std::endl;
 			this->_EnergyPoint--;
+			writeAttack("ClapTrap ", target);
 			break;
 	}
 }
@@ -95,37 +118,58 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	if (amount >= 9000){
+
+		std::cout << RED << "Its over 9000! " << RESET << std::endl;
+
+	}
 	if (this->_HitPoint == 0){
-		std::cout << RED << "You dont need to attack him again he Was Dead!" << RESET << std::endl;
+
+		this->writeRedName("ClapTrap ", "You dont need to attack him again he Was Dead!");
+
 	}else if (this->_HitPoint <= amount){
+
 		std::cout << "Fatal Damage " << this->_Name << " was dead" << std::endl;
 		this->_HitPoint = 0;
+
 	}else{
+
 		this->_HitPoint -= amount;
-		std::cout << "Taken Damage Hp:" << this->_HitPoint << std::endl;
+		std::cout << "Taken Damage Hp: " << this->_HitPoint << std::endl;
+
 	}
 }
 
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	switch (this->_EnergyPoint)
-	{
-	case 0:
-		std::cout << RED << this->_Name << " does not have enough energy points to eat bolt" << RESET << std::endl;
-		break;
-	default:
-		std::cout << "ClapTrap " << _Name << " eats some bolt and get " << amount << " of HitPoint" << std::endl;
-		this->_HitPoint += amount;
+	if (this->_HitPoint== 0){
+
+		this->writeRedName("ClapTrap ", " is KO (no hit point) so he can't be repaired...");
+		return ;
+
+	}
+	if (this->_EnergyPoint < 1){
+
+		this->writeRedName("ClapTrap ", "Not enough energy point to eat bolt");
+		return ;
+
+	}
+	while (this->_EnergyPoint >= 1 || amount == 0){
+
 		this->_EnergyPoint--;
-		break;
+		std::cout	<< this->_Name << " has been repaired of 1 hit points. (current energy: " << this->_EnergyPoint << ")" << std::endl;
+		this->_HitPoint += 1;
+		amount--;
+
 	}
-	if (this->_HitPoint >= 9000){
-		std::cout << RED << "It's Over 9000!" << RESET << std::endl;
-		this->_HitPoint = 10;
-		std::cout << this->_Name << " can't be over that 10 HitPoint" << std::endl;
-	}else if (this->_HitPoint > 10){
-		this->_HitPoint = 10;
-		std::cout << this->_Name << " can't be over that 10 HitPoint" << std::endl;
+	if (this->_EnergyPoint == 0 && amount != 0){
+
+		std::cout	<< "Not enough energy point to eat more bolt" << std::endl;
+
 	}
+	std::cout	<< "(current hitpoint: " << this->_HitPoint << ")" << std::endl;
 }
+
+
+/*----func----*/

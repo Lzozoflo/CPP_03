@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:19:53 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/01 08:55:58 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/03 11:57:20 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 DiamondTrap::DiamondTrap( void ) : ScavTrap(), FragTrap()
 {
-	_HitPoint = FragTrap::_HitPoint;
-	_EnergyPoint = ScavTrap::_EnergyPoint;
-	_AttackDamage = FragTrap::_AttackDamage;
+	this->_HitPoint = FragTrap::_HitPoint;
+	this->_EnergyPoint = ScavTrap::_EnergyPoint;
+	this->_AttackDamage = FragTrap::_AttackDamage;
 	std::cout << BLUE << "Constructor DiamondTrap is Called" << RESET << std::endl;
 }
 
@@ -27,9 +27,9 @@ DiamondTrap::DiamondTrap( void ) : ScavTrap(), FragTrap()
 DiamondTrap::DiamondTrap( const DiamondTrap &other )
 {
 	setName(other.getName());
-	_HitPoint = other._HitPoint;
-	_EnergyPoint = other._EnergyPoint;
-	_AttackDamage = other._AttackDamage;
+	this->_HitPoint = other._HitPoint;
+	this->_EnergyPoint = other._EnergyPoint;
+	this->_AttackDamage = other._AttackDamage;
 	std::cout << BLUE << "Constructor DiamondTrap Copy is Called" << RESET << std::endl;
 }
 
@@ -38,9 +38,9 @@ DiamondTrap &DiamondTrap::operator=( const DiamondTrap &other )
 {
 	if (this != &other){
 		setName(other.getName());
-		_HitPoint = other._HitPoint;
-		_EnergyPoint = other._EnergyPoint;
-		_AttackDamage = other._AttackDamage;
+		this->_HitPoint = other._HitPoint;
+		this->_EnergyPoint = other._EnergyPoint;
+		this->_AttackDamage = other._AttackDamage;
 	}
 	std::cout << BLUE << "Constructor DiamondTrap '=' is Called" << RESET << std::endl;
 	return (*this);
@@ -66,10 +66,11 @@ FragTrap(name + "_clap_name"),
 _Name(name)
 {
 
-	_HitPoint = FragTrap::_HitPoint;
-	_EnergyPoint = ScavTrap::_EnergyPoint;
-	_AttackDamage = FragTrap::_AttackDamage;
-	std::cout << BLUE << "Constructor ScavTrap name is Called" << RESET << std::endl;
+	this->_HitPoint = FragTrap::_HitPoint;
+	this->_EnergyPoint = ScavTrap::_EnergyPoint;
+	this->_AttackDamage = FragTrap::_AttackDamage;
+	std::cout << this->_EnergyPoint << std::endl;
+	std::cout << BLUE << "Constructor DiamondTrap name is Called" << RESET << std::endl;
 
 }
 
