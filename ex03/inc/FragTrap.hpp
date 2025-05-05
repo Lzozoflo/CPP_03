@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:17:38 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 12:48:13 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:59:32 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 
 class FragTrap : virtual public ClapTrap
 {
+	protected:
+		FragTrap( void );								//Canonical
 	public:
 	// {
 
-		FragTrap( void );								//Canonical
 		FragTrap( const FragTrap &other );				//Canonical
 		FragTrap &operator=( const FragTrap &other );	//Canonical
 		~FragTrap( void );								//Canonical

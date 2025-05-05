@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:23:31 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 11:51:02 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:55:24 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 
 ScavTrap::ScavTrap( void ) : ClapTrap(), _GateKeeper(false)
 {
-
-	this->_HitPoint = 100;
-	this->_EnergyPoint = 50;
-	this->_AttackDamage = 20;
 	writeConstructorCall("ScavTrap Default");
+	this->_EnergyPoint = 50;
 }
 
 

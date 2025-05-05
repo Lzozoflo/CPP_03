@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:19:53 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/03 11:57:20 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 13:27:55 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,41 @@
 /*---------------constructor------Canonical-------destructor----------------*/
 
 
-DiamondTrap::DiamondTrap( void ) : ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap( void )
 {
-	this->_HitPoint = FragTrap::_HitPoint;
-	this->_EnergyPoint = ScavTrap::_EnergyPoint;
-	this->_AttackDamage = FragTrap::_AttackDamage;
-	std::cout << BLUE << "Constructor DiamondTrap is Called" << RESET << std::endl;
+	writeConstructorCall("DiamondTrap Default");
+	this->_HitPoint = _HitPoint;
+	this->_EnergyPoint = _EnergyPoint;
+	this->_AttackDamage = _AttackDamage;
 }
 
 
 DiamondTrap::DiamondTrap( const DiamondTrap &other )
 {
-	setName(other.getName());
+	writeConstructorCall("DiamondTrap Copy");
+	// setName(other.this->_Name);
 	this->_HitPoint = other._HitPoint;
 	this->_EnergyPoint = other._EnergyPoint;
 	this->_AttackDamage = other._AttackDamage;
-	std::cout << BLUE << "Constructor DiamondTrap Copy is Called" << RESET << std::endl;
 }
 
 
 DiamondTrap &DiamondTrap::operator=( const DiamondTrap &other )
 {
+	std::cout << BLUE << "operator DiamondTrap '=' is Called" << RESET << std::endl;
 	if (this != &other){
-		setName(other.getName());
+		this->_Name = other._Name;
 		this->_HitPoint = other._HitPoint;
 		this->_EnergyPoint = other._EnergyPoint;
 		this->_AttackDamage = other._AttackDamage;
 	}
-	std::cout << BLUE << "Constructor DiamondTrap '=' is Called" << RESET << std::endl;
 	return (*this);
 }
 
 
 DiamondTrap::~DiamondTrap( void )
 {
-	std::cout << YELLOW << getName() << " Destructor DiamondTrap is Called" << RESET << std::endl;
+	writeDestructorCall("DiamondTrap");
 }
 
 
@@ -61,16 +61,16 @@ DiamondTrap::~DiamondTrap( void )
 
 DiamondTrap::DiamondTrap( const std::string name ) :
 ClapTrap(name + "_clap_name"),
-ScavTrap(name + "_clap_name"),
-FragTrap(name + "_clap_name"),
 _Name(name)
 {
-
-	this->_HitPoint = FragTrap::_HitPoint;
-	this->_EnergyPoint = ScavTrap::_EnergyPoint;
-	this->_AttackDamage = FragTrap::_AttackDamage;
+	writeConstructorCall("DiamondTrap Name");
+	this->_HitPoint = _HitPoint;
+	this->_EnergyPoint = _EnergyPoint;
+	this->_AttackDamage = _AttackDamage;
 	std::cout << this->_EnergyPoint << std::endl;
-	std::cout << BLUE << "Constructor DiamondTrap name is Called" << RESET << std::endl;
+	std::cout << this->_Name << std::endl;
+
+	std::cout << ClapTrap::_Name << std::endl;
 
 }
 
@@ -89,7 +89,7 @@ void DiamondTrap::attack(const std::string &target)
 
 void DiamondTrap::whoAmI()
 {
-
+	std::cout << "Diamond name: " << this->_Name << " Claptrap name: " << ClapTrap::_Name << std::endl;
 }
 
 /*----func----*/

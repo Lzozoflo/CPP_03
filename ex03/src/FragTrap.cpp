@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:19:53 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 12:44:04 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:55:20 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ FragTrap::FragTrap( void ) : ClapTrap()
 {
 	writeConstructorCall("FragTrap Default");
 	this->_HitPoint = 100;
-	this->_EnergyPoint = 100;
 	this->_AttackDamage = 30;
 }
 

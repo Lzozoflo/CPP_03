@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:22 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 11:48:47 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 13:29:31 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ class ClapTrap
 		unsigned int	_EnergyPoint;		//10
 		unsigned int	_AttackDamage;		//0
 
+
+		/*----utils----*/
+
+		void	writeRedName( std::string str1, std::string str2 );
+		void	writeAttack( std::string str1, const std::string& target );
+		static void	writeConstructorCall( std::string str1 );
+		static void	writeDestructorCall( std::string str1 );
 	// }
 	public:
 	// {
@@ -50,12 +57,6 @@ class ClapTrap
 		ClapTrap( const std::string name );
 
 
-		/*----utils----*/
-
-		void	writeRedName( std::string str1, std::string str2 );
-		void	writeAttack( std::string str1, const std::string& target );
-		static void	writeConstructorCall( std::string str1 );
-		static void	writeDestructorCall( std::string str1 );
 
 		/*----func----*/
 

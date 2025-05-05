@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:19:19 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 12:48:17 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/05 12:59:36 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ class ScavTrap : virtual public ClapTrap
 {
 	protected:
 	// {
+		ScavTrap( void );
 		bool _GateKeeper;
 	// }
 	public:
 	// {
 
-		ScavTrap( void );
 		ScavTrap( const ScavTrap &other );
 		ScavTrap &operator=( const ScavTrap &other );
 		~ScavTrap( void );
