@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:22 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/30 16:44:15 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/31 11:50:49 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class ClapTrap
 		/*----utils----*///bonus
 
 		void	writeRedName( std::string str1, std::string str2 );
+		void	writeAttack( std::string str1, const std::string& target );
 		static void	writeConstructorCall( std::string str1 );
 		static void	writeDestructorCall( std::string str1 );
 

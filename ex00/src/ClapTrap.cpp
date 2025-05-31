@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:13 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/31 08:22:16 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/31 12:06:22 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@ void ClapTrap::attack(const std::string& target)
 			break;
 		default:
 			this->_EnergyPoint--;
-			std::cout	<< "ClapTrap " << this->_Name << " attacks " << target << ", causing " << this->_AttackDamage
-						<<" points of damage! (current energy: " << this->_EnergyPoint << ")" << std::endl;
+			writeAttack("ClapTrap ", target);
 			break;
 	}
 }
