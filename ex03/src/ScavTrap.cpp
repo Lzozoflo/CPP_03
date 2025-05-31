@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:23:31 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 12:55:24 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/31 09:02:16 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ScavTrap::ScavTrap( void ) : ClapTrap(), _GateKeeper(false)
 
 ScavTrap::ScavTrap( const ScavTrap &other ) : ClapTrap(other), _GateKeeper(other._GateKeeper)
 {
-	writeConstructorCall("ClapTrap Copy");
+	writeConstructorCall("ScavTrap Copy");
 }
 
 

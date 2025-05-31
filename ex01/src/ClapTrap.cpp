@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:13 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 11:54:34 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/31 08:23:04 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ _Name(name), _HitPoint(10), _EnergyPoint(10), _AttackDamage(0)
 /*---------------constructor-------------destructor----------------*/
 
 
+
+
 /*----utils----*/
 
 
@@ -117,11 +119,7 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (amount >= 9000){
-
-		std::cout << RED << "Its over 9000! " << RESET << std::endl;
-
-	}
+	if (amount >= 9000){std::cout << RED << "Its over 9000! " << RESET << std::endl;}//bonus
 	if (this->_HitPoint == 0){
 
 		this->writeRedName("ClapTrap ", "You dont need to attack him again he Was Dead!");

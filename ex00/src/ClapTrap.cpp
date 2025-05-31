@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:04:13 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 11:54:40 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/31 08:22:16 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ ClapTrap::~ClapTrap( void )
 
 
 
-/*---------------constructor-------------destructor----------------*/
+
+/*---------------constructor------subject------destructor----------------*/
 
 
 ClapTrap::ClapTrap( const std::string name ) :
@@ -64,7 +65,8 @@ _Name(name), _HitPoint(10), _EnergyPoint(10), _AttackDamage(0)
 }
 
 
-/*---------------constructor-------------destructor----------------*/
+/*---------------constructor------subject------destructor----------------*/
+
 
 
 /*----utils----*/
@@ -75,13 +77,17 @@ void ClapTrap::writeRedName( std::string str1, std::string str2 )
 	std::cout << RED << str1 << this->_Name << str2 << RESET << std::endl;
 }
 
+void	ClapTrap::writeAttack( std::string str1, const std::string& target )
+{
+	std::cout	<< str1 << this->_Name << " attacks " << target << ", causing " << this->_AttackDamage
+				<< " points of damage! (current energy: " << this->_EnergyPoint << ")" << std::endl;
+}
 
 void	ClapTrap::writeConstructorCall( std::string str1 )
 {
 	std::cout << YELLOW << "Constructor " << str1 << " is Called" << RESET << std::endl;
 	// (void)str1;
 }
-
 
 void	ClapTrap::writeDestructorCall( std::string str1 )
 {
@@ -114,11 +120,7 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (amount >= 9000){
-
-		std::cout << RED << "Its over 9000! " << RESET << std::endl;
-
-	}
+	if (amount >= 9000){std::cout << RED << "Its over 9000! " << RESET << std::endl;}//bonus
 	if (this->_HitPoint == 0){
 
 		this->writeRedName("ClapTrap ", "You dont need to attack him again he Was Dead!");

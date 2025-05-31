@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:06:45 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/01 16:14:29 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/31 08:27:46 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main()
 
 	ScavTrap mike(bob);
 	mike.guardGate();
+	mike.takeDamage(9000);
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 12:19:53 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/05 13:27:55 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/31 09:11:44 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ DiamondTrap::DiamondTrap( void )
 DiamondTrap::DiamondTrap( const DiamondTrap &other )
 {
 	writeConstructorCall("DiamondTrap Copy");
-	// setName(other.this->_Name);
+	this->_Name = other._Name;
 	this->_HitPoint = other._HitPoint;
 	this->_EnergyPoint = other._EnergyPoint;
 	this->_AttackDamage = other._AttackDamage;
@@ -64,11 +64,10 @@ ClapTrap(name + "_clap_name"),
 _Name(name)
 {
 	writeConstructorCall("DiamondTrap Name");
-	this->_HitPoint = _HitPoint;
-	this->_EnergyPoint = _EnergyPoint;
-	this->_AttackDamage = _AttackDamage;
-	std::cout << this->_EnergyPoint << std::endl;
 	std::cout << this->_Name << std::endl;
+	std::cout << this->_HitPoint << std::endl;
+	std::cout << this->_EnergyPoint << std::endl;
+	std::cout << this->_AttackDamage << std::endl;
 
 	std::cout << ClapTrap::_Name << std::endl;
 

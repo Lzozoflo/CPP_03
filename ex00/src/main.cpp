@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:06:45 by fcretin           #+#    #+#             */
-/*   Updated: 2025/05/03 13:09:37 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/05/30 16:44:59 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 	jimmy.takeDamage(0);
 	bob.attack("jimmy");
 	jimmy.beRepaired(30);
-	jimmy.takeDamage(9000);
+	// jimmy.takeDamage(9000);
 	jimmy.beRepaired(30);
 	jimmy.takeDamage(0);
 	return 0;
